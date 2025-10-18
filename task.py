@@ -20,11 +20,6 @@ def main():
     feature_parser.add_argument(
         "--output", type=str, default="./source/features", help="Output directory"
     )
-    feature_parser.add_argument(
-        "--cn",
-        action="store_true",
-        help="Generate features that contains CN features, remove exists CN feature files if not set",
-    )
 
     release_parser = command.add_parser("release", help="Release new version")
     release_parser.add_argument(
@@ -43,9 +38,11 @@ def main():
         "--woff2", action="store_true", help="Generate new woff2 fonts"
     )
     page_parser.add_argument(
-        "--commit", action="store_true", help="Commit changes to page"
+        "--commit", action="store_true", help="Commit all changes to page"
     )
-    page_parser.add_argument("--sync", action="store_true", help="Sync page data")
+    page_parser.add_argument(
+        "--sync", action="store_true", help="Sync latest page data and commit"
+    )
 
     cn = command.add_parser("cn", help="Rebuild CN static font")
     cn.add_argument(
@@ -71,7 +68,7 @@ def main():
     elif args.command == "fea":
         from source.py.task.fea import fea
 
-        fea(args.output, args.cn)
+        fea(args.output)
 
     elif args.command == "release":
         from source.py.task.release import release

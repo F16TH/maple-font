@@ -29,7 +29,8 @@ Setup in your VSCode settings json file
 4. Choose "Maple Mono NF" in the font menu
 5. Click "Enable Ligatures"
 
-OpenType Features are not supported, you need to custom build to freeze features.
+> [!note]
+> Enabling OpenType Feature is not supported, you need to custom build to freeze features.
 
 ## Ligatures
 
@@ -119,6 +120,7 @@ OpenType Features are not supported, you need to custom build to freeze features
 - [v7.1] cv63: Alternative `<=` in arrow style
 - [v7.3] cv64: Alternative `<=` and `>=` with horizen bottom bar
 - [v7.3] cv65: Alternative `&` in handwriting style
+- [v7.8] cv66: Alternative pipe arrows
 - [v7.0] zero: Dot style `0`
 <!-- CV -->
 
