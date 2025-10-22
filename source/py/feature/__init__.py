@@ -53,6 +53,7 @@ def generate_fea_string(
     enable_infinite: bool = True,
     enable_tag: bool = True,
     variable_enabled_feature_list: list[str] | None = None,
+    remove_italic_calt: bool = False,
 ):
     """
     Generates feature string.
@@ -82,11 +83,12 @@ def generate_fea_string(
         raise TypeError("Invalid class_list, must ends with [@Var, @HexLetter]")
 
     calt_feat = get_calt(
-        class_list[-2],
-        class_list[-1],
+        cls_var=class_list[-2],
+        cls_hex_letter=class_list[-1],
         is_italic=is_italic,
         is_normal=is_normal,
         enable_tag=enable_tag,
+        remove_italic_calt=remove_italic_calt,
     )
 
     # clear calt for no ligature
@@ -99,7 +101,7 @@ def generate_fea_string(
     if variable_enabled_feature_list:
         extracted_lookup_list = []
         for feat in cv_ss_list:
-            if feat.tag in variable_enabled_feature_list or []:
+            if feat.tag in variable_enabled_feature_list:
                 # prevent features that add ligatures like `ss08`
                 if not is_calt and feat.has_lookup:
                     continue
